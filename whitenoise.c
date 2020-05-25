@@ -30,7 +30,7 @@ init_sio(struct sio_hdl *sio)
 
 	sio_initpar(&par);
 
-	par.pchan = 1;       /* One channels */
+	par.pchan = 1;       /* One channel */
 	par.sig   = 0;       /* Unsigned samples */
 	par.bits  = 8;
 	par.le    = 1;
@@ -59,7 +59,7 @@ whitenoise(struct sio_hdl *sio)
 		for (i = 0; i < 1024; i++)
 			buf[i] = rand() % 128;
 		/* Since it's random data, we don't care if the write
-		 * is truncated; no need to check the return value */
+		 * is truncated; no need to check the return value. */
 		sio_write(sio, buf, 1024);
 	}
 }
