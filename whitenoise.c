@@ -58,8 +58,10 @@ whitenoise(struct sio_hdl *sio)
 	for (;;) {
 		for (i = 0; i < 1024; i++)
 			buf[i] = rand() % 128;
-		/* Since it's random data, we don't care if the write
-		 * is truncated; no need to check the return value. */
+		/*
+		 * Since it's random data, we don't care if the write
+		 * is truncated; no need to check the return value.
+		 */
 		sio_write(sio, buf, 1024);
 	}
 }
@@ -81,19 +83,13 @@ main(int argc, char *argv[])
 			exit(1);
 		}
 	}
-
 	if ((sio = sio_open(device, SIO_PLAY, 0)) == NULL)
 		panic("failed to open sndio device");
-
 	init_sio(sio);
-
 	if (sio_start(sio) != 1)
 		panic("failed to start sndio");
-
 	whitenoise(sio);
-
 	if (sio_stop(sio) != 1)
 		panic("failed to stop sndio");
-
 	return 0;
 }
